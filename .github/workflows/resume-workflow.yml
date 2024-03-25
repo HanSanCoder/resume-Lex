@@ -1,0 +1,31 @@
+name: XeLaTeX Resume to GitHub Pages
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build_release_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup LaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: resume-zh_CN.tex
+          latex_engine: xelatex
+          packages: fontspec
+          
+          
+      - name: Compile LaTeX
+        run: xelatex resume-zh_CN.tex
+          
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          user_name: Hehansan
+          user_email: hehansan@gintama.love
