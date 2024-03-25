@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Setup LaTeX
+      - name: Setup XeLaTeX resume
         uses: xu-cheng/latex-action@v2
         with:
           root_file: resume-zh_CN.tex
@@ -19,7 +19,7 @@ jobs:
           packages: fontspec
           
           
-      - name: Compile LaTeX
+      - name: Compile XeLaTeX resume
         run: xelatex resume-zh_CN.tex
           
       - name: Deploy to GitHub Pages
