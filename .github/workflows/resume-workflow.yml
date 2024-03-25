@@ -13,11 +13,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup XeLaTeX
+    - name: Setup CTex
       run: sudo apt-get install texlive-lang-chinese
-
+      
+    - name: Install XeLaTeX
+      run: sudo apt-get install texlive-xetex
+    
     - name: Compile LaTeX
-      run: xelatex -interaction=nonstopmode resume-zh_CN.tex
+      run: |
+        export PATH="/usr/local/texlive/2022/bin/x86_64-linux:$PATH"
+        xelatex -interaction=nonstopmode resume-zh_CN.tex
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
